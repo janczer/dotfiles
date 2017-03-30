@@ -38,6 +38,8 @@ syntax enable
 set number
 let g:go_disable_autoinstall = 0
 
+let g:vim_markdown_folding_disabled = 1
+
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1  
@@ -51,6 +53,11 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 
 let g:neocomplete#source#syntax#min_keyword_length = 3
+
+let g:ctrlp_match_window = 'bottom,order:ttb'
+let g:ctrlp_match_buffer = 0
+let g:ctrlp_working_path_mode = 0
+"let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
 inoremap <expr><C-g>	neocomplete#undo_completion()
 inoremap <expr><C-l>	neocomplete#complete_common_string()
