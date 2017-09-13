@@ -1,41 +1,34 @@
 set ruler
 set cursorline
-set nocompatible | filetype indent plugin on | syn on
+set nocompatible
+filetype off
+syn on
 
-fun! SetupVAM()
-	let c = get(g:, 'vim_addon_manager', {})
-	let g:vim_addon_manager = c
-	let c.plugin_root_dir = expand('$HOME', 1) . '/.vim/vim-addons'
+set rtp+=~/.vim/bundle/Vundle.vim
 
-	let &rtp.=(empty(&rtp)?'':',').c.plugin_root_dir.'/vim-addon-manager'
-	if !isdirectory(c.plugin_root_dir.'/vim-addon-manager/autoload')
-		    execute '!git clone --depth=1 git://github.com/MarcWeber/vim-addon-manager '
-		            \       shellescape(c.plugin_root_dir.'/vim-addon-manager', 1)
-	endif
+call vundle#begin()
 
-	call vam#ActivateAddons([], {})
-endfun
-call SetupVAM()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'fatih/vim-go'
 
-call vam#ActivateAddons(['ctrlp'], {})
-call vam#ActivateAddons(['vim-go'], {})
-call vam#ActivateAddons(['neocomplete'], {})
-call vam#ActivateAddons(['The_NERD_tree'], {})
-call vam#ActivateAddons(['vim-airline'], {})
-call vam#ActivateAddons(['vim-gitgutter'], {})
-call vam#ActivateAddons(['surround'], {})
-call vam#ActivateAddons(['fugitive'], {})
-call vam#ActivateAddons(['The_NERD_Commenter'], {})
-call vam#ActivateAddons(['splitjoin'], {})
-call vam#ActivateAddons(['molokai'], {})
+Plugin 'Shougo/neocomplete'
+Plugin 'scrooloose/nerdtree'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'tomasr/molokai'
+Plugin 'powerline/powerline'
 
-syntax on
+call vundle#end()
 filetype plugin indent on
+
 set tabstop=4
 set shiftwidth=4
 set expandtab
 syntax enable
 set number
+
 let g:go_disable_autoinstall = 0
 
 let g:vim_markdown_folding_disabled = 1
@@ -94,6 +87,10 @@ set wildmenu
 set ls=2
 set encoding=utf8
 set cursorline
+
+set tags+=~/.vim/tags/qt
+
+map <C-F12> :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
 inoremap <Up>		<NOP>
 inoremap <Down>		<NOP>
